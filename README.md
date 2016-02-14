@@ -67,7 +67,8 @@ Das ganze kannst du natürlich auch in Kombination mit allen anderen Optionen ve
 
     https://eyecatchup.github.io/MyCountdown-app/?lang=EN
     
-Without additional parameters, it will show you the countdown to next New Year's eve. Note: as soon as you set your custom event (see below), the `lang` parameter can be ommited (you *could* have the rest of the texts in German by setting `lang=DE`)!
+Without additional parameters, it will show you the countdown to next New Year's eve.  
+_Note: as soon as you set your custom event (see below), the `lang` parameter can be ommited! (You *could* have the rest of the texts displayed in German by setting `lang=DE`, though.)_
 
 There're several options to customize the countdown to fit your needs _(so you save the final Link as a bookmark on your smartphone's home screen, for example)_.
 
