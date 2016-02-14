@@ -71,7 +71,7 @@ There're several options to customize the countdown to fit your needs _(so you s
 
 **1.)** Copy the following URL
 
-    https://eyecatchup.github.io/MyCountdown-app/?name={$name}&date={$date}&lang=DE
+    https://eyecatchup.github.io/MyCountdown-app/?name={$name}&date={$date}
 
 **2.)** Replace `{$name}` with the name of your event.
 
@@ -80,8 +80,8 @@ There're several options to customize the countdown to fit your needs _(so you s
 
 ##### Examples:
 
-1. [https://eyecatchup.github.io/MyCountdown-app/?name=christmas&date=12/24/2016&lang=EN][ex1en]
-2. [https://eyecatchup.github.io/MyCountdown-app/?name=kickoff of FIFA WC 2018&date=06/14/2018&lang=EN][ex2en]
+1. [https://eyecatchup.github.io/MyCountdown-app/?name=christmas&date=12/24/2016][ex1en]
+2. [https://eyecatchup.github.io/MyCountdown-app/?name=kickoff of FIFA WC 2018&date=06/14/2018][ex2en]
 
 ---
 
@@ -101,7 +101,7 @@ There're several options to customize the countdown to fit your needs _(so you s
 
 Of course, you can also combine all the options. For example:
 
-1. [https://eyecatchup.github.io/MyCountdown-app/?name=kickoff of FIFA WC 2018&date=06/14/2018&img=https://i.imgur.com/sRQDi8L.jpg&lang=EN][ex5en]
+1. [https://eyecatchup.github.io/MyCountdown-app/?name=kickoff of FIFA WC 2018&date=06/14/2018&img=https://i.imgur.com/sRQDi8L.jpg][ex5en]
 
 ---
 
@@ -116,6 +116,8 @@ License: MIT
 [ex3de]: https://eyecatchup.github.io/MyCountdown-app/?img=2.jpg "Beispiel: Alternatives Hintergrundbild / Example: alternative background image"  
 [ex4de]: https://eyecatchup.github.io/MyCountdown-app/?img=https://i.imgur.com/pWNgnmO.jpg "Beispiel: Eigenes Hintergrundbild / Example: custom background image"  
 [ex5de]: https://eyecatchup.github.io/MyCountdown-app/?name=zum%20Er%C3%B6ffnungsspiel%20der%20WM%202018&date=06/14/2018&img=https://i.imgur.com/sRQDi8L.jpg&lang=DE "Beispiel: Eigenes Event + Bild"  
-[ex1en]: https://eyecatchup.github.io/MyCountdown-app/?name=christmas&date=12/24/2016&lang=EN "Example 1 (EN): Custom Event"  
-[ex2en]: https://eyecatchup.github.io/MyCountdown-app/?name=kickoff%20of%20FIFA%20WC%202018&date=06/14/2018&lang=EN "Example 2 (EN): Custom Event"  
-[ex5en]: https://eyecatchup.github.io/MyCountdown-app/?name=kickoff%20of%20FIFA%20WC%202018&date=06/14/2018&img=https://i.imgur.com/sRQDi8L.jpg&lang=EN "Example: Custom Event + background image"  
+[ex1en]: https://eyecatchup.github.io/MyCountdown-app/?name=christmas&date=12/24/2016 "Example 1 (EN): Custom Event"  
+[ex2en]: https://eyecatchup.github.io/MyCountdown-app/?name=kickoff%20of%20FIFA%20WC%202018&date=06/14/2018 "Example 2 (EN): Custom Event"  
+[ex3en]: https://eyecatchup.github.io/MyCountdown-app/?img=2.jpg&lang=EN "Example: alternative background image"  
+[ex4en]: https://eyecatchup.github.io/MyCountdown-app/?img=https://i.imgur.com/pWNgnmO.jpg&lang=EN "Example: custom background image"  
+[ex5en]: https://eyecatchup.github.io/MyCountdown-app/?name=kickoff%20of%20FIFA%20WC%202018&date=06/14/2018&img=https://i.imgur.com/sRQDi8L.jpg "Example: Custom Event + background image"  
