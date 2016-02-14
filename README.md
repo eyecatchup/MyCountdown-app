@@ -5,7 +5,11 @@ Create your custom Countdown-_"Apps"_ with ease.
 
 ## How-To (DE)..
 
-> **NOTE:** EN version below.
+> **NOTE:** EN version [below](README.md#how-to-en).
+
+---
+
+### Intro
 
 [Unter folgender URL ist die Countdown-App erreichbar][appbase]:
 
@@ -56,6 +60,8 @@ Das ganze kannst du natürlich auch in Kombination mit allen anderen Optionen ve
 ---
 
 ## How-To (EN)..
+
+### Intro
 
 [The base URL of the Countdown-App is][appbase_en]:
 
