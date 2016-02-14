@@ -57,11 +57,11 @@ Das ganze kannst du natürlich auch in Kombination mit allen anderen Optionen ve
 
 ## How-To (EN)..
 
-[The base URL of the Countdown-App is][appbase]:
+[The base URL of the Countdown-App is][appbase_en]:
 
-    https://eyecatchup.github.io/MyCountdown-app/
+    https://eyecatchup.github.io/MyCountdown-app/?lang=EN
     
-Without additional parameters, it will show you the countdown to next New Year's eve.
+Without additional parameters, it will show you the countdown to next New Year's eve. Note: as soon as you set your custom event (see below), the `lang` parameter can be ommited (you *could* have the rest of the texts in German by setting `lang=DE`)!
 
 There're several options to customize the countdown to fit your needs _(so you save the final Link as a bookmark on your smartphone's home screen, for example)_.
 
@@ -111,6 +111,7 @@ Viel Spaß / enjoy!
 License: MIT
 
 [appbase]: https://eyecatchup.github.io/MyCountdown-app/ "MyCountdown App"  
+[appbase_en]: https://eyecatchup.github.io/MyCountdown-app/?lang=EN "MyCountdown App"  
 [ex1de]: https://eyecatchup.github.io/MyCountdown-app/?name=Weihnachten&date=12/24/2016&lang=DE "Beispiel 1 (DE): Eigenes Event"  
 [ex2de]: https://eyecatchup.github.io/MyCountdown-app/?name=zum%20Er%C3%B6ffnungsspiel%20der%20WM%202018&date=06/14/2018&lang=DE "Beispiel 2 (DE): Eigenes Event"  
 [ex3de]: https://eyecatchup.github.io/MyCountdown-app/?img=2.jpg "Beispiel: Alternatives Hintergrundbild / Example: alternative background image"  
