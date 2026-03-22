@@ -1,5 +1,5 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="de">
 <head>
     <meta charset="utf-8">
     <title>Countdown for everything</title>
@@ -11,22 +11,232 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Countdown">
-    <link rel="icon" type="image/x-icon" href="hourglass.ico">
-    <style>html,body{height:100%;}body{background:url(1.jpg) no-repeat center center fixed;background-size:cover;background-color:#000;overflow:hidden;text-align:center;line-height:2.2em;padding-top:12.5%;font-family:Arial;}h1,h2,#footerLink a{color:#fff;text-shadow:3px 3px 2px #000;}h1{font-size:1.7em;}h2{font-size:1.4em;}#eventDate{font-size:120%;}#footerLink{opacity:.8;position:absolute;display:block;bottom:10px;right:16px;}#footerLink a{font-size:.9em;}</style>
+    <link rel="icon" type="image/x-icon" href="hourglass.ico">   
+    <style>
+        :root {
+            --text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.8);
+            --flap-bg: #1a1a1a;
+            --flap-color: #f0f0f0;
+            --font-mono: "Courier New", Courier, monospace; 
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: #111 url('1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            height: 100dvh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        main {
+            text-shadow: var(--text-shadow);
+            padding: 2.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 2rem; }
+
+        #airportBoard {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            perspective: 1000px;
+        }
+
+        .unit-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .flaps-container {
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .flap {
+            background: var(--flap-bg);
+            color: var(--flap-color);
+            font-family: var(--font-mono);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: bold;
+            padding: 0.2em 0.3em;
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.1);
+            text-shadow: none; 
+            min-width: 1.2em;
+            display: flex;
+            justify-content: center;
+        }
+
+        .flap::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #000;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .unit-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        .flap.animating {
+            animation: flipDown 0.35s ease-in-out;
+        }
+
+        @keyframes flipDown {
+            0%   { transform: rotateX(0deg); filter: blur(0px); }
+            50%  { transform: rotateX(-90deg); filter: blur(1px); }
+            100% { transform: rotateX(0deg); filter: blur(0px); }
+        }
+
+        #expiredMessage {
+            font-size: 2rem;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <hgroup>
+    <main>
         <h1><span id="h1Prefix"></span><span id="eventName"></span></h1>
-        <h2><span id="datePrefix"></span><br><span id="eventDate"></span></h2>
-    </hgroup>
-    <footer><div id="footerLink"><a href="https://j.mp/mycountdown-app" target="_blank">Click to create custom countdown</a></div></footer>
+        <div id="airportBoard"></div>
+        <div id="expiredMessage"></div>
+    </main>
+
     <script>
-        var language="DE",opts={event_date:"12/31/"+(new Date).getFullYear()+" 11:59:59 PM",event_name:{DE:"Silvester",EN:"New Year"},expired:{DE:"Frohes neues Jahr "+(new Date).getFullYear()+"!",EN:"Happy new year "+(new Date).getFullYear()+"!"},h1_prefix:{DE:"Verbleibende Zeit bis ",EN:"Remaining time till "},dt_prefix:{DE:"Noch ",EN:""},dt_units:{DE:{d:"Tag(e)",h:"Stunde(n)",i:"Minute(n)",s:"Sekunde(n)"},EN:{d:"day(s)",h:"hour(s)",i:"minute(s)",s:"second(s)"}}};
-        function getQueryParams(){var a=window.location.search.substring(1),b=a.split("&"),c={};if(""==a)return{};for(a=0;a<b.length;a++){var d=b[a].split("=");c[decodeURIComponent(d[0])]=decodeURIComponent(d[1])}return c}var queryParams=getQueryParams(),evtDate="",evtName="";"undefined"!==typeof queryParams.img&&(document.body.style.background='url("'+queryParams.img+'") no-repeat center center fixed');"undefined"!==typeof queryParams.lang&&"EN"==queryParams.lang&&(language="EN");
-        "undefined"!==typeof queryParams.date&&queryParams.date.length&&"undefined"!==typeof queryParams.name&&queryParams.name.length?(evtDate=queryParams.date,evtName=queryParams.name,"undefined"===typeof queryParams.lang&&(language="EN")):(evtDate=opts.event_date,evtName=opts.event_name[language]);"Silvester"!=evtName&&"New Year"!=evtName&&(opts.expired.DE="Timer abgelaufen.<br>Datum "+evtDate+"<br>liegt in der Vergangenheit.",opts.expired.EN="Timer expired.<br>Date "+evtDate+"<br>is in the past.");
-        document.getElementById("eventName").innerHTML=evtName;document.getElementById("datePrefix").innerHTML=opts.dt_prefix[language];document.getElementById("h1Prefix").innerHTML=opts.h1_prefix[language];document.title=opts.h1_prefix[language]+evtName;
-        setInterval(function(a){var b=new Date(evtDate)-new Date;if(0>b)clearInterval(a),document.getElementById("eventDate").innerHTML=opts.expired[language],document.getElementById("datePrefix").innerHTML="";else{a=Math.floor(b%864E5/36E5);var c=Math.floor(b%36E5/6E4),d=Math.floor(b%6E4/1E3);0!=Math.floor(b/864E5)&&(document.getElementById("eventDate").innerHTML="<nobr>"+Math.floor(b/864E5)+" "+opts.dt_units[language].d+",</nobr> ");0!=a&&(document.getElementById("eventDate").innerHTML+="<nobr>"+a+" "+
-        opts.dt_units[language].h+",</nobr> ");0!=c&&(document.getElementById("eventDate").innerHTML+="<nobr>"+c+" "+opts.dt_units[language].i+"</nobr> &amp; ");document.getElementById("eventDate").innerHTML+="<nobr>"+d+" "+opts.dt_units[language].s+"</nobr>"}},1E3);
+        const urlParams = new URLSearchParams(window.location.search);
+        const bgImg = urlParams.get('img');
+        const mobileImg = urlParams.get('mobileImg');
+        const isMobile = window.innerWidth < 768;
+
+        if (isMobile && mobileImg) {
+            document.body.style.backgroundImage = `url("${mobileImg}")`;
+        } else if (bgImg) {
+            document.body.style.backgroundImage = `url("${bgImg}")`;
+        }
+
+        const browserLang = navigator.language.startsWith('de') ? 'DE' : 'EN';
+        const urlLang = urlParams.get('lang');
+        const language = (urlLang === 'EN' || urlLang === 'DE') ? urlLang : browserLang;
+        const currentYear = new Date().getFullYear();
+
+        const opts = {
+            event_date: `12/31/${currentYear} 23:59:59`,
+            event_name: { DE: "Silvester", EN: "New Year" },
+            expired: { DE: `Frohes neues Jahr ${currentYear + 1}! 🥂`, EN: `Happy new year ${currentYear + 1}! 🥂` },
+            h1_prefix: { DE: "Verbleibende Zeit bis ", EN: "Remaining time till " },
+            dt_units: {
+                DE: { d: "Tage", h: "Std", i: "Min", s: "Sek" },
+                EN: { d: "Days", h: "Hrs", i: "Min", s: "Sec" }
+            }
+        };
+
+        let evtDate = urlParams.get('date') || opts.event_date;
+        let evtName = urlParams.get('name') || opts.event_name[language];
+
+        document.getElementById("eventName").innerText = evtName;
+        document.getElementById("h1Prefix").innerText = opts.h1_prefix[language];
+        document.title = `${opts.h1_prefix[language]}${evtName}`;
+
+        const board = document.getElementById("airportBoard");
+
+        function updateFlaps(unitId, valueStr, labelText) {
+            let group = document.getElementById(`group-${unitId}`);
+            if (!group) {
+                group = document.createElement('div');
+                group.className = 'unit-group';
+                group.id = `group-${unitId}`;
+
+                const flapsContainer = document.createElement('div');
+                flapsContainer.className = 'flaps-container';
+                flapsContainer.id = `flaps-${unitId}`;
+
+                const label = document.createElement('div');
+                label.className = 'unit-label';
+                label.innerText = labelText;
+
+                for (let i = 0; i < valueStr.length; i++) {
+                    const flap = document.createElement('div');
+                    flap.className = 'flap';
+                    flap.innerText = valueStr[i];
+                    flapsContainer.appendChild(flap);
+                }
+
+                group.appendChild(flapsContainer);
+                group.appendChild(label);
+                board.appendChild(group);
+            } else {
+                const flapsContainer = document.getElementById(`flaps-${unitId}`);
+
+                if (flapsContainer.children.length !== valueStr.length) {
+                    flapsContainer.innerHTML = '';
+                    for (let i = 0; i < valueStr.length; i++) {
+                        const flap = document.createElement('div');
+                        flap.className = 'flap';
+                        flap.innerText = valueStr[i];
+                        flapsContainer.appendChild(flap);
+                    }
+                } else {
+                    for (let i = 0; i < valueStr.length; i++) {
+                        const flap = flapsContainer.children[i];
+                        if (flap.innerText !== valueStr[i]) {
+                            flap.classList.remove('animating');
+                            void flap.offsetWidth; // force reflow
+
+                            flap.innerText = valueStr[i];
+                            flap.classList.add('animating');
+                        }
+                    }
+                }
+            }
+        }
+
+        const timerInterval = setInterval(() => {
+            const timeRemaining = new Date(evtDate).getTime() - new Date().getTime();
+
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                board.style.display = 'none';
+                document.getElementById("datePrefix").style.display = 'none';
+                const expMsg = document.getElementById("expiredMessage");
+                expMsg.innerText = urlParams.get('date') ? `Der Timer für "${evtName}" ist abgelaufen!` : opts.expired[language];
+                expMsg.style.display = 'block';
+                return;
+            }
+
+            const days = String(Math.floor(timeRemaining / (1000 * 60 * 60 * 24)));
+            const hours = String(Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            const minutes = String(Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            const seconds = String(Math.floor((timeRemaining % (1000 * 60)) / 1000)).padStart(2, '0');
+
+            if (parseInt(days) > 0) updateFlaps('days', days, opts.dt_units[language].d);
+            if (parseInt(hours) > 0 || parseInt(days) > 0) updateFlaps('hours', hours, opts.dt_units[language].h);
+            if (parseInt(minutes) > 0 || parseInt(hours) > 0 || parseInt(days) > 0) updateFlaps('minutes', minutes, opts.dt_units[language].i);
+            updateFlaps('seconds', seconds, opts.dt_units[language].s);
+        }, 1000);
     </script>
 </body>
 </html>
